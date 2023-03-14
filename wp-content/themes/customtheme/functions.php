@@ -33,6 +33,9 @@ function include_jquery()
 add_action('wp_enqueue_scripts', 'include_jquery');
 
 add_theme_support('menus');
+add_theme_support('title-tag');
+add_theme_support('html5',
+array('comment-list','comment-form','search-form'));
 
 register_nav_menus(
     array(
@@ -45,5 +48,22 @@ add_theme_support('post-thumbnails');
 
 add_image_size('smallest',229,140,true);
 add_image_size('largest',800,800,true);
+
+register_post_type('project',
+    array(
+    'rewrite' => array('slug' => 'projects'),
+    'labels' => array(
+        'name' => 'Projects',
+        'singular_name' => 'Project',
+        'add_new_item' => 'Add new project',
+        'edit_item' => 'Edit project'
+    ),
+    'menu-icon' => 'dashicons-clipboard',
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array(
+        'title', 'thumbnail', 'editor', 'excerpt', 'comments'
+    )
+))
 
 ?>
